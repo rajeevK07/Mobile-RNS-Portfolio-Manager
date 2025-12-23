@@ -1,6 +1,6 @@
 # 📱 RNS Portfolio Manager (Mobile)
 
-![Banner](https://github.com/user-attachments/assets/placeholder-banner.png) 
+[![Banner](https://github.com/rsksmart/rbtc-usdt0-lending-boilerplate/blob/main/rootstock-logo.png)](https://github.com/rsksmart/rbtc-usdt0-lending-boilerplate/blob/main/rootstock-logo.png)
 > *Building the future of Bitcoin-secured Identity on Mobile.*
 
 [![React Native](https://img.shields.io/badge/React_Native-v0.76+-blue.svg)](https://reactnative.dev)
