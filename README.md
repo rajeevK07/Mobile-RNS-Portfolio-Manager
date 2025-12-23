@@ -60,3 +60,70 @@ npm install
 
 # Install iOS Pods (Mac Only)
 cd ios && pod install && cd ..
+
+### 2. The "Polyfill" Magic (Crucial Step)
+
+This project uses `react-native-get-random-values` and `buffer` to make `Ethers.js` work on mobile.
+
+* Ensure `src/polyfills.ts` (or `index.js` imports) are present.
+* *Note: This is already configured in the repo, but essential to understand.*
+
+### 3. Configure Keys
+
+Create a `src/constants/Config.ts` file or replace the placeholders in `App.tsx`:
+
+```typescript
+export const PROJECT_ID = "YOUR_REOWN_PROJECT_ID"; // Get from cloud.reown.com
+
+```
+
+### 4. Run the App
+
+```bash
+# For Android
+npm run android
+
+# For iOS
+npm run ios
+
+```
+
+---
+
+## 🧩 Architecture
+
+### The Data Flow
+
+1. **User logs in** -> `Reown AppKit` establishes a session.
+2. **App checks network** -> `wagmi` ensures connection to Chain ID **31** (Testnet).
+3. **App queries data** -> `Apollo Client` hits our custom **Graph Studio Subgraph**.
+4. **User acts** -> `Ethers.js` wraps the wallet provider to sign transactions (e.g., Transfer Domain).
+
+### Important Contracts (Testnet)
+
+* **RNS Registry:** `0x7d284aaac6e925aad802a53c0c69efe3764597b8`
+* **RPC Node:** `https://public-node.testnet.rsk.co`
+
+---
+
+## 🐛 Troubleshooting
+
+**"ReferenceError: Property 'Buffer' doesn't exist"**
+
+* Ensure you imported `buffer` and `react-native-get-random-values` at the **very top** of `index.js`.
+
+**"404 Not Found: @reown/appkit-adapter-ethers..."**
+
+* Use the correct mobile package: `@reown/appkit-ethers-react-native`, **not** the adapter package.
+
+**"Wrong Network"**
+
+* The app includes a `<NetworkGuard />` component. Switch your wallet (MetaMask) to **RSK Testnet**.
+
+## 👨‍💻 Author
+
+**Rajeev Kalra**
+* **Hashnode:** [rajeevk.hashnode.dev](https://rajeevk.hashnode.dev)
+---
+
+> *Built for the Rootstock Developer Community.* 🧡
